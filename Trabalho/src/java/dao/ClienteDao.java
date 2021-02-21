@@ -22,6 +22,20 @@ import sun.util.logging.PlatformLogger.Level;
  * @author Robson
  */
 public class ClienteDao {
+    
+    private ClienteDao(){
+        
+    }
+    private static ClienteDao instance;
+    
+    //aplicacao do padrao singleton 
+    public synchronized static ClienteDao getInstance(){
+        if(instance == null){
+            instance = new ClienteDao();
+            
+        }
+        return instance;
+    } 
 
     public List<ClienteModel> getClientes() {
         List<ClienteModel> listaClientes = new ArrayList<ClienteModel>();

@@ -46,7 +46,8 @@ public class LocacaoResource {
     @Produces("application/json")
     public String listLocacao() throws Exception {
         List<LocacaoModel> lista;
-        LocacaoDao dao = new LocacaoDao();
+        //LocacaoDao dao = new LocacaoDao();
+        LocacaoDao dao = LocacaoDao.getInstance();
         List<model.LocacaoModel> locacoes = dao.getAll();
         //Converter para Gson
         Gson g = new Gson();
@@ -61,7 +62,8 @@ public class LocacaoResource {
         LocacaoModel l = new LocacaoModel();
         l.setCodigolocacao(codigolocacao);
 
-        LocacaoDao dao = new LocacaoDao();
+        //LocacaoDao dao = new LocacaoDao();
+        LocacaoDao dao = LocacaoDao.getInstance();
         l = dao.buscar(l);
 
         //Converter para Gson
@@ -76,7 +78,8 @@ public class LocacaoResource {
     public boolean inserir(String content) throws Exception {
         Gson g = new Gson();
         LocacaoModel l = (LocacaoModel) g.fromJson(content, LocacaoModel.class);
-        LocacaoDao dao = new LocacaoDao();
+        //LocacaoDao dao = new LocacaoDao();
+        LocacaoDao dao = LocacaoDao.getInstance();
         return dao.inserirLocacao(l);
     }
     
@@ -87,7 +90,8 @@ public class LocacaoResource {
     public boolean alterar(String content) throws Exception {
         Gson g = new Gson();
         LocacaoModel l = (LocacaoModel) g.fromJson(content, LocacaoModel.class);
-        LocacaoDao dao = new LocacaoDao();
+        //LocacaoDao dao = new LocacaoDao();
+        LocacaoDao dao = LocacaoDao.getInstance();
         return dao.atualizar(l);
     }
     
@@ -100,7 +104,8 @@ public class LocacaoResource {
         LocacaoModel c = new LocacaoModel();
         c.setCodigocarro(codigocarro);
 
-        LocacaoDao dao = new LocacaoDao();
+        //LocacaoDao dao = new LocacaoDao();
+        LocacaoDao dao = LocacaoDao.getInstance();
         c = dao.buscarDisponibilidade(c);
 
         //Converter para Gson

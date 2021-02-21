@@ -8,11 +8,13 @@ package testes;
 import dao.ClienteDao;
 import model.ClienteModel;
 import com.google.gson.Gson;
+import dao.CarroDao;
 import dao.LocacaoDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jms.JMSException;
+import model.CarroModel;
 import model.LocacaoModel;
 
 /**
@@ -84,6 +86,15 @@ public class teste {
 //        
 //        l.setCodigolocacao(1);
 //        dao.excluir(l);
+
+
+
+           //teste excluir carro
+           CarroDao dao = CarroDao.getInstance();
+           CarroModel carro = new CarroModel();
+           
+           carro.setPlaca("AW13");
+           dao.excluir("AW13");
     }
     
 }

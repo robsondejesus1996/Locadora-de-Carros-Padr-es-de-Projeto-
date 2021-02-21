@@ -34,6 +34,20 @@ public class LocacaoDao {
     private Connection con;
     private String sql;
     
+     //aplicacao do padrao singleton
+    private LocacaoDao(){
+        
+    }
+    
+    private static LocacaoDao instance;
+    
+    public synchronized static LocacaoDao getInstance(){
+        if(instance == null){
+            instance = new LocacaoDao();
+        }
+        return instance;
+    }
+    
     //so não esta traznndo alguns campos
      public List<LocacaoModel> getAll() throws Exception {
         List<LocacaoModel> locacoes = new ArrayList<>();

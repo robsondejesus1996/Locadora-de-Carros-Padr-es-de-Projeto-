@@ -66,7 +66,8 @@ public class Cliente {
     @Produces("application/json")
     public String listUsuarios() throws Exception {
         List<ClienteModel> lista;
-        ClienteDao dao = new ClienteDao();
+        //ClienteDao dao = new ClienteDao();
+        ClienteDao dao = ClienteDao.getInstance();
         List<model.ClienteModel> clientes = dao.getAll();
         //Converter para Gson
         Gson g = new Gson();
@@ -81,7 +82,8 @@ public class Cliente {
         ClienteModel c = new ClienteModel();
         c.setCpf(cpf);
 
-        ClienteDao dao = new ClienteDao();
+        //ClienteDao dao = new ClienteDao();
+        ClienteDao dao = ClienteDao.getInstance();
         c = dao.buscar(c);
 
         //Converter para Gson
@@ -96,7 +98,8 @@ public class Cliente {
     public boolean inserir(String content) throws Exception {
         Gson g = new Gson();
         ClienteModel c = (ClienteModel) g.fromJson(content, ClienteModel.class);
-        ClienteDao dao = new ClienteDao();
+        //ClienteDao dao = new ClienteDao();
+        ClienteDao dao = ClienteDao.getInstance();
         return dao.inserirCliente(c);
     }
 
@@ -107,7 +110,8 @@ public class Cliente {
     public boolean alterar(String content) throws Exception {
         Gson g = new Gson();
         ClienteModel c = (ClienteModel) g.fromJson(content, ClienteModel.class);
-        ClienteDao dao = new ClienteDao();
+        //ClienteDao dao = new ClienteDao();
+        ClienteDao dao = ClienteDao.getInstance();
         return dao.atualizar(c);
     }
 
@@ -116,7 +120,8 @@ public class Cliente {
     @Path("Cliente/excluir/{cpf}")
     public String excluir(@PathParam("cpf") String cpf) throws Exception {
         ClienteModel c = new ClienteModel();
-        ClienteDao dao = new ClienteDao();
+        //ClienteDao dao = new ClienteDao();
+        ClienteDao dao = ClienteDao.getInstance();
         c.setCpf(cpf);
 
         if (dao.excluir(cpf)) {

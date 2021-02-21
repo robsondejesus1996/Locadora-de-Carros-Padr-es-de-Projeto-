@@ -29,6 +29,21 @@ public class CarroDao {
     private Connection con;
     private String sql;
 
+   //aplicação padrao Singleton
+    
+    private CarroDao(){
+        
+    }
+    
+    private static CarroDao instance;
+    
+    public synchronized static CarroDao getInstance(){
+        if(instance == null){
+            instance = new CarroDao();
+        }
+        return instance;
+    }
+
     //funcionando
     public List<CarroModel> getAll() throws Exception {
         List<CarroModel> carros = new ArrayList<>();

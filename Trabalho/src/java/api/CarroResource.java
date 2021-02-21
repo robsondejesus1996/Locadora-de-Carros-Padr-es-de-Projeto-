@@ -47,7 +47,8 @@ public class CarroResource {
     @Produces("application/json")
     public String listCarro() throws Exception {
         List<CarroModel> lista;
-        CarroDao dao = new CarroDao();
+        //CarroDao dao = new CarroDao();
+        CarroDao dao = CarroDao.getInstance();
         List<model.CarroModel> carros = dao.getAll();
         //Converter para Gson
         Gson g = new Gson();
@@ -62,7 +63,8 @@ public class CarroResource {
         CarroModel c = new CarroModel();
         c.setPlaca(placa);
 
-        CarroDao dao = new CarroDao();
+        //CarroDao dao = new CarroDao();
+        CarroDao dao = CarroDao.getInstance();
         c = dao.buscar(c);
 
         //Converter para Gson
@@ -77,7 +79,8 @@ public class CarroResource {
     public boolean inserir(String content) throws Exception {
         Gson g = new Gson();
         CarroModel c = (CarroModel) g.fromJson(content, CarroModel.class);
-        CarroDao dao = new CarroDao();
+        //CarroDao dao = new CarroDao();
+        CarroDao dao = CarroDao.getInstance();
         return dao.inserirCarro(c);
     }
     
@@ -88,7 +91,8 @@ public class CarroResource {
     public boolean alterar(String content) throws Exception {
         Gson g = new Gson();
         CarroModel c = (CarroModel) g.fromJson(content, CarroModel.class);
-        CarroDao dao = new CarroDao();
+        //CarroDao dao = new CarroDao();
+        CarroDao dao = CarroDao.getInstance();
         return dao.atualizar(c);
     }
     
@@ -98,7 +102,8 @@ public class CarroResource {
     @Path("Carro/excluir/{placa}")
     public String excluir(@PathParam("placa") String placa) throws Exception {
         CarroModel c = new CarroModel();
-        CarroDao dao = new CarroDao();
+        //CarroDao dao = new CarroDao();
+        CarroDao dao = CarroDao.getInstance();
         c.setPlaca(placa);
 
         if (dao.excluir(placa)) {
