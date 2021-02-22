@@ -19,6 +19,8 @@ import java.util.Calendar;
 import java.util.List;
 import javax.jms.JMSException;
 import javax.persistence.TypedQuery;
+import observer.DadosObserver;
+import observer.SujeitoAtualizar;
 import org.jboss.logging.Logger;
 import sun.util.logging.PlatformLogger;
 import sun.util.logging.PlatformLogger.Level;
@@ -136,6 +138,10 @@ public class LocacaoDao {
     } 
      
      public boolean inserirLocacao(LocacaoModel l)throws Exception{
+         
+         //observer
+        SujeitoAtualizar sujeito = new SujeitoAtualizar();
+        new DadosObserver(sujeito);
          try {
             sql = "insert into locacao(codigolocacao, quilometragem_saida,data_locacao,status, codigocliente, codigocarro) values (?,?,?,?,?,?)";
             con = ConexaoUtil.getInstance().getConnection();
@@ -148,6 +154,8 @@ public class LocacaoDao {
             pst.setInt(6, l.getCodigocarro());
             pst.execute();
             con.close();
+            System.out.println("Notificacao ao adicionar abservadores de locação");
+            sujeito.setNotificacao();
             return true;
 
         } catch (ClassNotFoundException | SQLException ex) {

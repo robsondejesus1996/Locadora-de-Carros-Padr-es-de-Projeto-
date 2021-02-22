@@ -14,6 +14,8 @@ import java.util.List;
 import javax.jms.JMSException;
 import javax.persistence.TypedQuery;
 import model.CarroModel;
+import observer.DadosObserver;
+import observer.SujeitoAtualizar;
 import org.jboss.logging.Logger;
 import sun.util.logging.PlatformLogger;
 import sun.util.logging.PlatformLogger.Level;
@@ -100,6 +102,13 @@ public class CarroDao {
     }
 
     public boolean inserirCarro(CarroModel c) throws Exception {
+        //teste aplicacao observer
+        SujeitoAtualizar sujeito = new SujeitoAtualizar();
+        
+        //observer
+        new DadosObserver(sujeito);
+        
+        
         try {
             sql = "insert into carro(codigoCarro, placa, marca, modelo, anofabricacao, valor_km) values (?,?,?,?,?,?)";
             con = ConexaoUtil.getInstance().getConnection();
@@ -112,6 +121,9 @@ public class CarroDao {
             pst.setInt(6, c.getValor_km());
             pst.execute();
             con.close();
+            //observer
+            System.out.println("Notificacao ao adicionar abservadores de carros");
+            sujeito.setNotificacao();
             return true;
 
         } catch (ClassNotFoundException | SQLException ex) {

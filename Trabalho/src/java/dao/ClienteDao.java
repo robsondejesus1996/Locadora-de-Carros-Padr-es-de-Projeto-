@@ -13,6 +13,8 @@ import java.util.Calendar;
 import java.util.List;
 import javax.jms.JMSException;
 import javax.persistence.TypedQuery;
+import observer.DadosObserver;
+import observer.SujeitoAtualizar;
 import org.jboss.logging.Logger;
 import sun.util.logging.PlatformLogger;
 import sun.util.logging.PlatformLogger.Level;
@@ -94,6 +96,12 @@ public class ClienteDao {
     }
 
     public boolean inserirCliente(ClienteModel c) throws Exception {
+        //teste aplicacao observer
+        SujeitoAtualizar sujeito = new SujeitoAtualizar();
+        
+        
+        //observer
+        new DadosObserver(sujeito);
         try {
             sql = "insert into cliente(codigoCliente, cpf, nome, cnh, fone, email) values (?,?,?,?,?,?)";
             con = ConexaoUtil.getInstance().getConnection();
@@ -106,6 +114,9 @@ public class ClienteDao {
             pst.setString(6, c.getEmail());
             pst.execute();
             con.close();
+            //observer
+            System.out.println("Notificacao ao adicionar abservadores de clientes");
+            sujeito.setNotificacao();
             return true;
 
         } catch (ClassNotFoundException | SQLException ex) {
