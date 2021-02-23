@@ -11,21 +11,38 @@ package model;
  */
 public class ClienteModel {
     
-//   create table ClienteModel(
-//   codigo serial not null,
-//   cpf varchar(50),
-//   nome varchar(50),
-//   cnh varchar(50),
-//   fone varchar(50),
-//   email varchar(50)
-//)
-
     private int codigoCliente;
     private String cpf;
     private String nome;
     private String cnh;
     private String fone;
     private String email;
+    
+    
+    
+    //teste aplicacao command
+    public final static int INSERIR = 0;
+    public final static int EXCLUIR = 1;
+    private int estado = 0;
+
+    public void inserir() {
+        this.estado = INSERIR;
+        System.out.println("Command inserindo cliente....");
+    }
+
+    public void excluir() {
+        this.estado = EXCLUIR;
+        System.out.println("Command excluindo cliente....");
+    }
+    
+    public String verEstado(){
+        if(estado == INSERIR){
+            return "Cliente Inserido...";
+        }else{
+           return "Cliente removido..."; 
+        }
+    }
+
 
     public ClienteModel() {
     }
@@ -90,6 +107,14 @@ public class ClienteModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
    

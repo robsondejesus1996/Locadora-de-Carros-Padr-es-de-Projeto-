@@ -5,6 +5,10 @@
  */
 package dao;
 
+import commad.Command;
+import commad.ControleCliente;
+import commad.InserirCommandCliente;
+import commad.RemoverCommandCliente;
 import controller.ConexaoUtil;
 import model.ClienteModel;
 import java.sql.*;
@@ -100,6 +104,13 @@ public class ClienteDao {
         SujeitoAtualizar sujeito = new SujeitoAtualizar();
         
         
+         //teste aplicacao command
+        ClienteModel cliente = new ClienteModel();
+        Command inserirCommand = new InserirCommandCliente(cliente);
+        Command removerCommad = new RemoverCommandCliente(cliente);
+        ControleCliente controle = new ControleCliente(inserirCommand, removerCommad);
+        
+        
         //observer
         new DadosObserver(sujeito);
         try {
@@ -114,8 +125,9 @@ public class ClienteDao {
             pst.setString(6, c.getEmail());
             pst.execute();
             con.close();
-            //observer
-            System.out.println("Notificacao ao adicionar abservadores de clientes");
+            //aplicacao command
+            controle.inserirCliente();
+            System.out.println("Notificacao ao adicionar abservadores");
             sujeito.setNotificacao();
             return true;
 
@@ -125,6 +137,13 @@ public class ClienteDao {
 
     }
      public boolean excluir(String cpf) {
+         
+         //aplicacao command
+         ClienteModel cliente = new ClienteModel();
+         Command inserirCommand = new InserirCommandCliente(cliente);
+         Command removerCommad = new RemoverCommandCliente(cliente);
+         ControleCliente controle = new ControleCliente(inserirCommand, removerCommad); 
+         
         try {
             Connection connection = ConexaoUtil.getInstance().getConnection();
             String sql = "delete from cliente WHERE cpf = ?";
@@ -134,6 +153,7 @@ public class ClienteDao {
             System.out.println("Cliente remvovido com sucesso!!!");
             statement.close();
             connection.close();
+            controle.removerCliente();
             return true;
         } catch (Exception e) {
             return true;

@@ -19,6 +19,31 @@ public class CarroModel {
     private String modelo;
     private Date anoFabricacao;
     private int valor_km;
+    
+    
+    //teste aplicacao command 
+    public final static int INSERIR = 0;
+    public final static int EXCLUIR = 1;
+    private int estado = 0;
+    
+    public void inserir(){
+        this.estado = INSERIR;
+        System.out.println("Command inserindo carro...");
+    }
+    
+    public void excluir(){
+        this.estado = EXCLUIR;
+        System.out.println("Command excluindo carro...");
+    }
+    
+    public String verEstado(){
+        if(estado == INSERIR){
+            return "Carro inserido...";
+        }else{
+            return "Carro removido...";
+        }
+    }
+
 
     public CarroModel(int codigoCarro, String placa, String marca, String modelo, Date anoFabricacao, int valor_km) {
         this.codigoCarro = codigoCarro;
@@ -83,6 +108,15 @@ public class CarroModel {
 
     public void setValor_km(int valor_km) {
         this.valor_km = valor_km;
+    }
+    
+    
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
    

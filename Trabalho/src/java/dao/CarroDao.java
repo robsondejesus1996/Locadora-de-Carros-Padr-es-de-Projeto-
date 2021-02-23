@@ -5,6 +5,10 @@
  */
 package dao;
 
+import commad.Command;
+import commad.ControleCarro;
+import commad.InserirCommandCarro;
+import commad.RemoverCommandCarro;
 import controller.ConexaoUtil;
 import model.ClienteModel;
 import java.sql.*;
@@ -109,6 +113,13 @@ public class CarroDao {
         new DadosObserver(sujeito);
         
         
+         //teste aplicacao command
+        CarroModel carro = new CarroModel();
+        Command inserirCommand = new InserirCommandCarro(carro);
+        Command removerCommand = new RemoverCommandCarro(carro);
+        ControleCarro controle = new ControleCarro(inserirCommand, removerCommand);
+        
+        
         try {
             sql = "insert into carro(codigoCarro, placa, marca, modelo, anofabricacao, valor_km) values (?,?,?,?,?,?)";
             con = ConexaoUtil.getInstance().getConnection();
@@ -121,8 +132,9 @@ public class CarroDao {
             pst.setInt(6, c.getValor_km());
             pst.execute();
             con.close();
-            //observer
-            System.out.println("Notificacao ao adicionar abservadores de carros");
+            //aplicacao command 
+            controle.inserirCarro();
+            System.out.println("Notificacao ao adicionar abservadores");
             sujeito.setNotificacao();
             return true;
 
@@ -156,6 +168,13 @@ public class CarroDao {
     }
 
     public boolean excluir(String placa) {
+        
+         //aplicacao command excluir 
+        CarroModel carro = new CarroModel();
+        Command inserirCommand = new InserirCommandCarro(carro);
+        Command removerCommand = new RemoverCommandCarro(carro);
+        ControleCarro controle = new ControleCarro(inserirCommand, removerCommand);
+        
         try {
             Connection connection = ConexaoUtil.getInstance().getConnection();
             String sql = "delete from carro WHERE placa = ?";
@@ -165,6 +184,7 @@ public class CarroDao {
             System.out.println("Carro remvovido com sucesso!!!");
             statement.close();
             connection.close();
+            controle.removerCarro();
             return true;
         } catch (Exception e) {
             return true;
