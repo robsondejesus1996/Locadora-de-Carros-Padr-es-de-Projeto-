@@ -2,16 +2,16 @@
 ## Alunos: Robson de Jesus e Camila Masasneiro 
 
 
-
-create table Cliente(
-   codigoCliente integer not null UNIQUE,
-   cpf varchar(50) not null,
-   nome varchar(50)not null,
-   cnh varchar(50)not null,
-   fone varchar(50)not null,
-   email varchar(50)not null,
-   primary key(codigoCliente)
-)
+### Criação dos scrips do banco de dados
+###### create table Cliente(
+######   codigoCliente integer not null UNIQUE,
+######   cpf varchar(50) not null,
+######   nome varchar(50)not null,
+######   cnh varchar(50)not null,
+######   fone varchar(50)not null,
+######   email varchar(50)not null,
+######   primary key(codigoCliente)
+######)
 
 create table carro(
  codigoCarro integer not null UNIQUE, 
