@@ -11,16 +11,16 @@
 ######   fone varchar(50)not null,
 ######   email varchar(50)not null,
 ######   primary key(codigoCliente)
-######)
+)
 
-create table carro(
- codigoCarro integer not null UNIQUE, 
- placa varchar(100),
- marca varchar(100),
- modelo varchar(100),
- anoFabricacao Date,
- valor_km integer,
- primary key (codigoCarro)
+###### create table carro(
+###### codigoCarro integer not null UNIQUE, 
+###### placa varchar(100),
+###### marca varchar(100),
+###### modelo varchar(100),
+###### anoFabricacao Date,
+###### valor_km integer,
+###### primary key (codigoCarro)
 );
 
 create table locacao(
