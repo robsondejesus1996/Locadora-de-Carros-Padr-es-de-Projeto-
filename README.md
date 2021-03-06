@@ -1,6 +1,7 @@
-Aluno: Robson de Jesus
-Trabalho de padrıes de projeto 
-Script para criaÁ„o das tabelas 
+# Cria√ß√£o de banco de dados e End Points para fazer opera√ß√µes dos dados 
+## Alunos: Robson de Jesus e Camila Masasneiro 
+
+
 
 create table Cliente(
    codigoCliente integer not null UNIQUE,
@@ -49,7 +50,7 @@ Caminho: http://localhost:8080/Trabalho/webresources/Cliente/Cliente/get/1111
 Ex: 
 
 4)Update do cliente 
-OBS: Passe o mesmo codigoCliente para pegar a alteraÁ„o
+OBS: Passe o mesmo codigoCliente para pegar a altera√ß√£o
 Caminho: http://localhost:8080/Trabalho/webresources/Cliente/Cliente/alterar
 Ex: 
 
@@ -57,7 +58,7 @@ Ex:
 
 
 5) Deletar Cliente
-OBS: SÛ È necess·rio passar o cpf do cliente no final do caminho de excluir. 
+OBS: S√≥ √© necess√°rio passar o cpf do cliente no final do caminho de excluir. 
 Caminho: http://localhost:8080/Trabalho/webresources/Cliente/Cliente/excluir/1111
 Ex:
 
@@ -82,17 +83,17 @@ Ex:
 OBS: Informe no final do caminho a string da placa 
 Caminho: http://localhost:8080/Trabalho/webresources/carro/Carro/get/EABC1
 Ex:
-9)Cadastrar uma locaÁ„o/emprÈstimo
-Obs: Para cadastra uma locaÁ„o coloque todos os campos, menos os campos de quilomentragem_retorno, e data_devoluÁ„o. Pois esses campos n„o podem entrar agora. So na devoluÁ„o do emprÈstimo que vamos fazer um put de alteraÁ„o.
-OBS: Sempre que for cadastrar um emprÈstimo, coloque o campo status como indisponÌvel. Pois so quando fizermos a devoluÁ„o esse status tambÈm deve ser alterado para disponÌvel. 
+9)Cadastrar uma loca√ß√£o/empr√©stimo
+Obs: Para cadastra uma loca√ß√£o coloque todos os campos, menos os campos de quilomentragem_retorno, e data_devolu√ß√£o. Pois esses campos n√£o podem entrar agora. So na devolu√ß√£o do empr√©stimo que vamos fazer um put de altera√ß√£o.
+OBS: Sempre que for cadastrar um empr√©stimo, coloque o campo status como indispon√≠vel. Pois so quando fizermos a devolu√ß√£o esse status tamb√©m deve ser alterado para dispon√≠vel. 
 Caminho: http://localhost:8080/Trabalho/webresources/locacao/LocacaoCadastrarEmprestimo/inserir
 Ex: 
-10)Cadastrar devoluÁ„o de carro
-OBS: Essa operaÁ„o foi feita com um put, pois na hora de inserir n„o s„o passados alguns campos. Na hora da devoluÁ„o de carro esses campos devem ser passadas para a alteraÁ„o.
+10)Cadastrar devolu√ß√£o de carro
+OBS: Essa opera√ß√£o foi feita com um put, pois na hora de inserir n√£o s√£o passados alguns campos. Na hora da devolu√ß√£o de carro esses campos devem ser passadas para a altera√ß√£o.
 Caminho: http://localhost:8080/Trabalho/webresources/locacao/LocacaoDevolucao/alterar
 Ex:
-11) Dever ter uma maneira de controlar se o carro est· alugado ou disponÌvel
-OBS: Informe o cÛdigo do carro no final do caminho, nele vai estar todos os campos como zero, e o status do carro atualmente. Por isso na devoluÁ„o deve-se alterar esse status.  
+11) Dever ter uma maneira de controlar se o carro est√° alugado ou dispon√≠vel
+OBS: Informe o c√≥digo do carro no final do caminho, nele vai estar todos os campos como zero, e o status do carro atualmente. Por isso na devolu√ß√£o deve-se alterar esse status.  
 Caminho: http://localhost:8080/Trabalho/webresources/locacao/DisponibilidadeCarro/get/1
 Ex: 
 
