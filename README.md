@@ -23,18 +23,18 @@
 ###### primary key (codigoCarro)
 );
 
-create table locacao(
-   codigoLocacao integer not null,
-   quilometragem_saida integer not null,
-   quilomentragem_retorno integer,
-   data_locacao date not null,
-   data_devolucao date,
-   status varchar(50)  not null,
-   codigoCliente integer  not null,
-   codigoCarro integer not null,
-   primary key(codigoLocacao),
-   foreign key(codigoCliente) references cliente (codigoCliente),
-   foreign key(codigoCarro) references carro(codigoCarro)
+###### create table locacao(
+######   codigoLocacao integer not null,
+######   quilometragem_saida integer not null,
+######   quilomentragem_retorno integer,
+######   data_locacao date not null,
+######   data_devolucao date,
+######   status varchar(50)  not null,
+######   codigoCliente integer  not null,
+######   codigoCarro integer not null,
+######   primary key(codigoLocacao),
+######   foreign key(codigoCliente) references cliente (codigoCliente),
+######   foreign key(codigoCarro) references carro(codigoCarro)
 )
 
 Caminhos para testar os endpoints
