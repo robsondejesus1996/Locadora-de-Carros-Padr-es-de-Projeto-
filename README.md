@@ -40,7 +40,14 @@
 #Caminhos para testar os endpoints
 ###### 1)Criar Cliente
 ###### Caminho: http://localhost:8080/Trabalho/webresources/Cliente/Cliente/inserir
-Ex: 
+Ex:  {
+    "codigoCliente": 1,
+    "cpf": 995462652,
+    "nome": "Robson de Jesus",
+    "cnh": "987545",
+    "fone": "99107774",
+    "email": "robsondejesus@hotmail.com"
+}
 
 ###### 2)Listar todos os clientes
 ###### Caminho: http://localhost:8080/Trabalho/webresources/Cliente
