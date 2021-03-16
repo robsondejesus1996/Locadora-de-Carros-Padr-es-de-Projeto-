@@ -37,6 +37,8 @@
 ######   foreign key(codigoCarro) references carro(codigoCarro)
 );
 
+##### Utilize a ferramenta Postman para realizar as operações
+
 #Caminhos para testar os endpoints
 ###### 1)Criar Cliente
 ###### Caminho: http://localhost:8080/Trabalho/webresources/Cliente/Cliente/inserir
@@ -51,16 +53,17 @@ Ex:  {
 
 ###### 2)Listar todos os clientes
 ###### Caminho: http://localhost:8080/Trabalho/webresources/Cliente
-Ex:  
+Ex:  Simplemente vá no caminho indicado selecionane a opção de operação GET e aberte Send.
 
 ###### 3)Listar os clientes filtrando pelo cpf
 ###### Caminho: http://localhost:8080/Trabalho/webresources/Cliente/Cliente/get/1111
-Ex: 
+Ex: Simplemente vá no caminho indicado selecionane a opção de operação GET e aberte Send.
 
 ###### 4)Update do cliente 
 ###### OBS: Passe o mesmo codigoCliente para pegar a alteração
 ###### Caminho: http://localhost:8080/Trabalho/webresources/Cliente/Cliente/alterar
-Ex: 
+###### Obs: Operação tem que passar todo o objeto json
+Ex: Simplemente vá no caminho indicado selecionane a opção de operação GET e aberte Send.
 
 
 
@@ -68,7 +71,7 @@ Ex:
 ###### 5) Deletar Cliente
 ###### OBS: Só é necessário passar o cpf do cliente no final do caminho de excluir. 
 ###### Caminho: http://localhost:8080/Trabalho/webresources/Cliente/Cliente/excluir/1111
-Ex:
+Ex: Simplemente vá no caminho indicado selecionane a opção de operação GET e informe no final do caminho o cpf do cliente e aberte Send.
 
 
 
@@ -76,18 +79,25 @@ Ex:
 
 ###### 6) Listar todos os Carro
 Caminho: http://localhost:8080/Trabalho/webresources/carro
-Ex: 
+Ex: Simplemente vá no caminho indicado selecionane a opção de operação GET e aberte Send.
 
 
 ###### 7) Criar Carro
 ###### Caminho: http://localhost:8080/Trabalho/webresources/carro/Carro/inserir
-Ex: 
+Ex: {
+    "codigoCarro": 1,
+    "placa": "AW123",
+    "marca": "Fiat",
+    "modelo": "Argo",
+    "anoFabricacao": "mai 8, 2020",
+    "valor_km": 15000
+}
 
 
 ###### 8)Listar os carros, todos e filtrar pela placa
 ###### OBS: Informe no final do caminho a string da placa 
 ###### Caminho: http://localhost:8080/Trabalho/webresources/carro/Carro/get/EABC1
-Ex:
+Ex: Simplemente vá no caminho indicado selecionane a opção de operação GET e informe no final do caminho a placa e aberte Send.
 
 
 ###### 9)Cadastrar uma locação/empréstimo
@@ -97,19 +107,36 @@ Ex:
 
 ###### Caminho: http://localhost:8080/Trabalho/webresources/locacao/LocacaoCadastrarEmprestimo/inserir
 Ex:
-
+ {
+        "codigolocacao": 5,
+        "quilometragem_saida": 82000,
+        "quilometragem_retorno": 0,
+        "data_locacao": "out 12, 2021",
+        "status": "indisponivel",
+        "codigocliente": 9,
+        "codigocarro": 3
+    }
 
 ###### 10)Cadastrar devolução de carro
 ###### OBS: Essa operação foi feita com um put, pois na hora de inserir não são passados alguns campos. Na hora da devolução de carro esses campos devem ser passadas para a alteração.
 
 ###### Caminho: http://localhost:8080/Trabalho/webresources/locacao/LocacaoDevolucao/alterar
-Ex:
+Ex:  {
+        "codigolocacao": 5,
+        "quilometragem_saida": 82000,
+        "quilometragem_retorno": 10000,
+        "data_locacao": "out 30, 2021",
+        "data_devolucao": "nov 2, 2021",
+        "status": "disponivel",
+        "codigocliente": 9,
+        "codigocarro": 3
+    }
 
 ###### 11) Dever ter uma maneira de controlar se o carro está alugado ou disponível
 ###### OBS: Informe o código do carro no final do caminho, nele vai estar todos os campos como zero, e o status do carro atualmente. Por isso na devolução deve-se alterar esse status.  
 
 ###### Caminho: http://localhost:8080/Trabalho/webresources/locacao/DisponibilidadeCarro/get/1
-Ex: 
+Ex: Simplemente vá no caminho indicado selecionane a opção de operação GET e informe no final do caminho a codigo do carro e aberte Send.
 
 
 
