@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Registrar devolução</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                margin: 0;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 25%;
+                background-color: #f1f1f1;
+                position: fixed;
+                height: 100%;
+                overflow: auto;
+            }
+            li a {
+                display: block;
+                color: #000;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+            li a.active {
+                background-color: black;
+                color: red;
+            }
+            li a:hover:not(.active) {
+                background-color: #555;
+                color: white;
+            }
+
+            input{
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: none;
+                background-color: #4F4F4F;
+                color: white;
+            }
+            button {
+                background-color: #CC0000;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            h1{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li><a class="active" href="index.html">Inicial</a></li>
+            <li><a href="CadastrarCarro.html">CADASTRO CARRO</a></li>
+            <li><a href="CadastroCliente.html">CADASTRO CLIENTE</a></li>
+            <li><a href="CadastroLocacao.html">CADASTRO LOCAÇÃO</a></li>
+            <li><a href="RegistraLocacao.html">REGISTRAR DEVOLUÇÃO</a></li>
+            <li><a href="ConsultaEmprestimoCarro.html">CONSULTA LOCAÇÃO CARRO</a></li>
+            <li><a href="ConsultaEmprestimoCliente.html">CONSULTA LOCAÇÃO CLIENTE</a></li>
+            <li><a href="ConsultaEmprestimoLocacaoData.html">CONSULTA LOCAÇÃO DATA</a></li>
+            <li><a href="ConsultaClienteTodos.html">CONSULTA CLIENTES</a></li>
+            <li><a href="ConsultaClienteCPF.html">CONSULTA CLIENTES CPF</a></li>
+            <li><a href="ConsultaCarroTodos.html">CCONSULTA CARRO</a></li>
+            <li><a href="ConsultaCarroPlaca.html">CONSULTA CARRO PLACA</a></li>
+            <li><a href="ConsultaCarroLocados.html">CARROS LOCADOS</a></li>
+        </ul>
+        
+        <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+        <h1> Registrar devolução</h1>
+        <fieldset>
+            <form >
+                <label >Codigo:</label><br>
+                <input type="number" id="codigo" required="" placeholder="Informe o codigo para o update"><br>
+                <label >Quilometragem saída:</label><br>
+                <input type="number" id="quilometragem_s" required=""><br>
+                <label >Quilometragem retorno:</label><br>
+                <input type="number" id="quilometragem_r" placeholder="Informe KM para o update" required=""><br>
+                <label >Data locação:</label><br>
+                <input type="text" id="data_l" required=""><br>
+                <label >data devolução:</label><br>
+                <input type="text" id="data_d" placeholder="Informe a data para update" required=""><br>
+                <label >Status:</label><br>
+                <input type="text" id="status" placeholder="Informe disponivel para o update" required=""><br>
+                <label >Codigo cliente: </label><br>
+                <input type="text" id="codigoCli" required=""><br>
+                <label >Codigo carro: </label><br>
+                <input type="text" id="codigoCar" required=""><br>
+                <button onclick="salvar()">Salvar</button>
+            </form>
+        </fieldset>
+        <script>
+            function salvar() {
+                debugger;
+                var obj = JSON.stringify({
+                    "codigolocacao": document.getElementById("codigo").value,
+                    "quilometragem_saida": document.getElementById("quilometragem_s").value,
+                    "quilometragem_retorno": document.getElementById("quilometragem_r").value,
+                    "data_locacao": document.getElementById("data_l").value,
+                    "data_devolucao": document.getElementById("data_d").value,
+                    "status": document.getElementById("status").value,
+                    "codigocliente": document.getElementById("codigoCli").value,
+                    "codigocarro": document.getElementById("codigoCar").value
+                });
+                console.log(obj);
+
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.open("PUT", "http://localhost:8080/Trabalho/webresources/Locacao/LocacaoDevolucao/alterar", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send(obj);
+                alert("Registro alterado com sucesso!")
+            }
+
+        </script>
+        </div>
+    </body>
+</html>

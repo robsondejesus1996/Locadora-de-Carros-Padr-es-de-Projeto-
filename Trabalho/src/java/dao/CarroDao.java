@@ -5,10 +5,11 @@
  */
 package dao;
 
-import commad.Command;
-import commad.ControleCarro;
-import commad.InserirCommandCarro;
-import commad.RemoverCommandCarro;
+import command.Command;
+import command.ControleCarro;
+import command.InserirCommandCarro;
+import command.RemoverCommandCarro;
+import controller.Conexao;
 import controller.ConexaoUtil;
 import model.ClienteModel;
 import java.sql.*;
@@ -26,7 +27,7 @@ import sun.util.logging.PlatformLogger.Level;
 
 /**
  *
- * @author Robson
+ * @author Robson de Jesus
  */
 public class CarroDao {
 
@@ -34,8 +35,8 @@ public class CarroDao {
     private ResultSet rs;
     private Connection con;
     private String sql;
-
-   //aplicação padrao Singleton
+    
+    //aplicação padrao Singleton
     
     private CarroDao(){
         
@@ -65,8 +66,8 @@ public class CarroDao {
             c.setPlaca(rs.getString("placa"));
             c.setMarca(rs.getString("marca"));
             c.setModelo(rs.getString("modelo"));
-            c.setValor_km(rs.getInt("valor_km"));
-            c.setAnoFabricacao(rs.getDate("anofabricacao"));
+            c.setValor_km(rs.getString("valor_km"));
+            c.setAnoFabricacao(rs.getString("anofabricacao"));
             carros.add(c);
         }
         con.close();
@@ -92,8 +93,8 @@ public class CarroDao {
                 retorno.setPlaca(resultSet.getString("placa"));
                 retorno.setMarca(resultSet.getString("marca"));
                 retorno.setModelo(resultSet.getString("modelo"));
-                retorno.setAnoFabricacao(resultSet.getDate("anofabricacao"));
-                retorno.setValor_km(resultSet.getInt("valor_km"));
+                retorno.setAnoFabricacao(resultSet.getString("anofabricacao"));
+                retorno.setValor_km(resultSet.getString("valor_km"));
 
             }
             resultSet.close();
@@ -109,16 +110,15 @@ public class CarroDao {
         //teste aplicacao observer
         SujeitoAtualizar sujeito = new SujeitoAtualizar();
         
-        //observer
-        new DadosObserver(sujeito);
         
-        
-         //teste aplicacao command
+        //teste aplicacao command
         CarroModel carro = new CarroModel();
         Command inserirCommand = new InserirCommandCarro(carro);
         Command removerCommand = new RemoverCommandCarro(carro);
         ControleCarro controle = new ControleCarro(inserirCommand, removerCommand);
         
+        
+        new DadosObserver(sujeito);
         
         try {
             sql = "insert into carro(codigoCarro, placa, marca, modelo, anofabricacao, valor_km) values (?,?,?,?,?,?)";
@@ -128,8 +128,8 @@ public class CarroDao {
             pst.setString(2, c.getPlaca());
             pst.setString(3, c.getMarca());
             pst.setString(4, c.getModelo());
-            pst.setDate(5, c.getAnoFabricacao());
-            pst.setInt(6, c.getValor_km());
+            pst.setString(5, c.getAnoFabricacao());
+            pst.setString(6, c.getValor_km());
             pst.execute();
             con.close();
             //aplicacao command 
@@ -152,8 +152,8 @@ public class CarroDao {
             statement.setString(2, c.getPlaca());
             statement.setString(3, c.getMarca());
             statement.setString(4, c.getModelo());
-            statement.setDate(5, c.getAnoFabricacao());
-            statement.setInt(6, c.getValor_km());
+            statement.setString(5, c.getAnoFabricacao());
+            statement.setString(6, c.getValor_km());
             statement.setInt(7, c.getCodigoCarro());
             statement.executeUpdate();
             System.out.println("Carro atualizado com sucesso!!!");
@@ -169,11 +169,12 @@ public class CarroDao {
 
     public boolean excluir(String placa) {
         
-         //aplicacao command excluir 
+        //aplicacao command excluir 
         CarroModel carro = new CarroModel();
         Command inserirCommand = new InserirCommandCarro(carro);
         Command removerCommand = new RemoverCommandCarro(carro);
         ControleCarro controle = new ControleCarro(inserirCommand, removerCommand);
+        
         
         try {
             Connection connection = ConexaoUtil.getInstance().getConnection();

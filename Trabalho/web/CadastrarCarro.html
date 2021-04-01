@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Cadastro carro</title>
+        <style>
+            body {
+                margin: 0;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 25%;
+                background-color: #f1f1f1;
+                position: fixed;
+                height: 100%;
+                overflow: auto;
+            }
+            li a {
+                display: block;
+                color: #000;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+            li a.active {
+                background-color: black;
+                color: red;
+            }
+            li a:hover:not(.active) {
+                background-color: #555;
+                color: white;
+            }
+
+            input{
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: none;
+                background-color: #4F4F4F;
+                color: white;
+            }
+            button {
+                background-color: #CC0000;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            h1{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li><a class="active" href="index.html">Inicial</a></li>
+            <li><a href="CadastrarCarro.html">CADASTRO CARRO</a></li>
+            <li><a href="CadastroCliente.html">CADASTRO CLIENTE</a></li>
+            <li><a href="CadastroLocacao.html">CADASTRO LOCAÇÃO</a></li>
+            <li><a href="RegistraLocacao.html">REGISTRAR DEVOLUÇÃO</a></li>
+            <li><a href="ConsultaEmprestimoCarro.html">CONSULTA LOCAÇÃO CARRO</a></li>
+            <li><a href="ConsultaEmprestimoCliente.html">CONSULTA LOCAÇÃO CLIENTE</a></li>
+            <li><a href="ConsultaEmprestimoLocacaoData.html">CONSULTA LOCAÇÃO DATA</a></li>
+            <li><a href="ConsultaClienteTodos.html">CONSULTA CLIENTES</a></li>
+            <li><a href="ConsultaClienteCPF.html">CONSULTA CLIENTES CPF</a></li>
+            <li><a href="ConsultaCarroTodos.html">CONSULTA CARRO</a></li>
+            <li><a href="ConsultaCarroPlaca.html">CONSULTA CARRO PLACA</a></li>
+            <li><a href="ConsultaCarroLocados.html">CARROS LOCADOS</a></li>
+        </ul>
+
+        <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+            <h1>Cadastro Carro</h1>
+            <fieldset>
+                <form >
+                    <label >Codigo:</label><br>
+                    <input type="number" id="codigo" required=""><br>
+                    <label >Placa:</label><br>
+                    <input type="text" id="placa" required=""><br>
+                    <label >Marca:</label><br>
+                    <input type="text" id="marca" required=""><br>
+                    <label >Modelo:</label><br>
+                    <input type="text" id="modelo" required=""><br>
+                    <label >Ano fabricação: </label><br>
+                    <input type="text" id="ano" required=""><br>
+                    <label >KM:</label><br>
+                    <input type="text" id="km" required=""><br>
+                    <button onclick="salvar()">Salvar</button>
+                </form>
+            </fieldset>
+            <hr>
+
+            <div id="dados"></div>
+            <script>
+                function salvar() {
+                    var obj = JSON.stringify({
+                        "codigoCarro": document.getElementById("codigo").value,
+                        "placa": document.getElementById("placa").value,
+                        "marca": document.getElementById("marca").value,
+                        "modelo": document.getElementById("modelo").value,
+                        "anoFabricacao": document.getElementById("ano").value,
+                        "valor_km": document.getElementById("km").value
+
+                    });
+                    console.log(obj);
+
+                    var xhttp = new XMLHttpRequest();
+
+                    xhttp.open("POST", "http://localhost:8080/Trabalho/webresources/carro/Carro/inserir", true);
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    xhttp.send(obj);
+                    alert("carro inserido com sucesso!");
+                }
+            </script>
+        </div>
+
+    </body>
+</html>

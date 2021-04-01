@@ -7,10 +7,11 @@ package model;
 
 /**
  *
- * @author Robson
+ * @author Robson de Jesus
  */
 public class ClienteModel {
     
+
     private int codigoCliente;
     private String cpf;
     private String nome;

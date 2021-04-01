@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cadastro cliente</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                margin: 0;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 25%;
+                background-color: #f1f1f1;
+                position: fixed;
+                height: 100%;
+                overflow: auto;
+            }
+            li a {
+                display: block;
+                color: #000;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+            li a.active {
+                background-color: black;
+                color: red;
+            }
+            li a:hover:not(.active) {
+                background-color: #555;
+                color: white;
+            }
+
+            input{
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: none;
+                background-color: #4F4F4F;
+                color: white;
+            }
+            button {
+                background-color: #CC0000;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            h1{
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li><a class="active" href="index.html">Inicial</a></li>
+            <li><a href="CadastrarCarro.html">CADASTRO CARRO</a></li>
+            <li><a href="CadastroCliente.html">CADASTRO CLIENTE</a></li>
+            <li><a href="CadastroLocacao.html">CADASTRO LOCAÇÃO</a></li>
+            <li><a href="RegistraLocacao.html">REGISTRAR DEVOLUÇÃO</a></li>
+            <li><a href="ConsultaEmprestimoCarro.html">CONSULTA LOCAÇÃO CARRO</a></li>
+            <li><a href="ConsultaEmprestimoCliente.html">CONSULTA LOCAÇÃO CLIENTE</a></li>
+            <li><a href="ConsultaEmprestimoLocacaoData.html">CONSULTA LOCAÇÃO DATA</a></li>
+            <li><a href="ConsultaClienteTodos.html">CONSULTA CLIENTES</a></li>
+            <li><a href="ConsultaClienteCPF.html">CONSULTA CLIENTES CPF</a></li>
+            <li><a href="ConsultaCarroTodos.html">CCONSULTA CARRO</a></li>
+            <li><a href="ConsultaCarroPlaca.html">CONSULTA CARRO PLACA</a></li>
+            <li><a href="ConsultaCarroLocados.html">CARROS LOCADOS</a></li>
+        </ul>
+
+        <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+            <h1>Cadastro de Clientes</h1>
+            <fieldset>
+                <form >
+                    <label >Codigo:</label><br>
+                    <input type="number" id="codigo" required=""><br>
+                    <label >Nome:</label><br>
+                    <input type="text" id="nome" required=""><br>
+                    <label >CPF:</label><br>
+                    <input type="text" id="cpf" required=""><br>
+                    <label >CNH:</label><br>
+                    <input type="text" id="cnh" required=""><br>
+                    <label >Telefone:</label><br>
+                    <input type="text" id="fone" required=""><br>
+                    <label >Email: </label><br>
+                    <input type="text" id="email" required=""><br>
+                    <button onclick="salvar()">Salvar</button>
+                </form>
+            </fieldset>
+
+            <hr>
+
+            <div id="dados"></div>
+            <script>
+                function salvar() {
+                    var obj = JSON.stringify({
+                        "codigoCliente": document.getElementById("codigo").value,
+                        "nome": document.getElementById("nome").value,
+                        "cpf": document.getElementById("cpf").value,
+                        "cnh": document.getElementById("cnh").value,
+                        "fone": document.getElementById("fone").value,
+                        "email": document.getElementById("email").value
+                    });
+                    console.log(obj);
+
+                    var xhttp = new XMLHttpRequest();
+
+                    xhttp.open("POST", "http://localhost:8080/Trabalho/webresources/Cliente/Cliente/inserir", true);
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    xhttp.send(obj);
+                    alert("Cliente inserido com sucesso!");
+                }
+            </script>
+        </div>
+    </body>
+</html>

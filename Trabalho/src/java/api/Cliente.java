@@ -81,7 +81,7 @@ public class Cliente {
     public String getCliente(@PathParam("cpf") String cpf) throws Exception {
         ClienteModel c = new ClienteModel();
         c.setCpf(cpf);
-
+        
         //ClienteDao dao = new ClienteDao();
         ClienteDao dao = ClienteDao.getInstance();
         c = dao.buscar(c);

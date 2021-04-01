@@ -14,28 +14,16 @@ import java.util.List;
  */
 public class LocacaoModel {
     
-    
     private int codigolocacao;
     private int quilometragem_saida;
     private int quilometragem_retorno;
-    private Date data_locacao;
-    private Date data_devolucao;
+    private String data_locacao;
+    private String data_devolucao;
     private String status;
-    private int codigocliente;
-    private int codigocarro;
+    private String codigocliente;
+    private String codigocarro;
 
     public LocacaoModel() {
-    }
-
-    public LocacaoModel(int codigolocacao, int quilometragem_saida, int quilometragem_retorno, Date data_locacao, Date data_devolucao, String status, int codigocliente, int codigocarro) {
-        this.codigolocacao = codigolocacao;
-        this.quilometragem_saida = quilometragem_saida;
-        this.quilometragem_retorno = quilometragem_retorno;
-        this.data_locacao = data_locacao;
-        this.data_devolucao = data_devolucao;
-        this.status = status;
-        this.codigocliente = codigocliente;
-        this.codigocarro = codigocarro;
     }
 
     @Override
@@ -67,19 +55,19 @@ public class LocacaoModel {
         this.quilometragem_retorno = quilometragem_retorno;
     }
 
-    public Date getData_locacao() {
+    public String getData_locacao() {
         return data_locacao;
     }
 
-    public void setData_locacao(Date data_locacao) {
+    public void setData_locacao(String data_locacao) {
         this.data_locacao = data_locacao;
     }
 
-    public Date getData_devolucao() {
+    public String getData_devolucao() {
         return data_devolucao;
     }
 
-    public void setData_devolucao(Date data_devolucao) {
+    public void setData_devolucao(String data_devolucao) {
         this.data_devolucao = data_devolucao;
     }
 
@@ -91,29 +79,21 @@ public class LocacaoModel {
         this.status = status;
     }
 
-    public int getCodigocliente() {
+    public String getCodigocliente() {
         return codigocliente;
     }
 
-    public void setCodigocliente(int codigocliente) {
+    public void setCodigocliente(String codigocliente) {
         this.codigocliente = codigocliente;
     }
 
-    public int getCodigocarro() {
+    public String getCodigocarro() {
         return codigocarro;
     }
 
-    public void setCodigocarro(int codigocarro) {
+    public void setCodigocarro(String codigocarro) {
         this.codigocarro = codigocarro;
     }
-    
-    
-    
 
-    
-    
-    
-    
-    
     
 }

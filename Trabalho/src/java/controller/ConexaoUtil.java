@@ -14,6 +14,7 @@ import java.sql.DriverManager;
  */
 public class ConexaoUtil {
     
+    //aplicação do singleton
     private static ConexaoUtil conexaoUtil;
     
     public static ConexaoUtil getInstance()throws Exception{
@@ -24,8 +25,8 @@ public class ConexaoUtil {
     }
     public Connection getConnection()throws Exception{
         Class.forName("org.postgresql.Driver");
-        System.out.println("Conexão estabelecida");
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/trabalho-parte1", "postgres", "12345");
+        System.out.println("Conexão deu boa!");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/trabalho", "postgres", "12345");
     }
     
     public static void main(String[]args){

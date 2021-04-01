@@ -25,7 +25,7 @@ import model.LocacaoModel;
  *
  * @author Robson
  */
-@Path("locacao")
+@Path("Locacao")
 public class LocacaoResource {
 
     @Context
@@ -41,10 +41,9 @@ public class LocacaoResource {
      * Retrieves representation of an instance of api.LocacaoResource
      * @return an instance of java.lang.String
      */
-    //funcionando
     @GET
     @Produces("application/json")
-    public String listLocacao() throws Exception {
+    public String listUsuarios() throws Exception {
         List<LocacaoModel> lista;
         //LocacaoDao dao = new LocacaoDao();
         LocacaoDao dao = LocacaoDao.getInstance();
@@ -55,35 +54,76 @@ public class LocacaoResource {
     }
     
     
+    //get carro
     @GET
     @Produces("application/json")
-    @Path("Locacao/get/{codigolocacao}")
-    public String getLocacao(@PathParam("codigolocacao") int codigolocacao) throws Exception {
-        LocacaoModel l = new LocacaoModel();
-        l.setCodigolocacao(codigolocacao);
+    @Path("LocacaoCarro/get/{codigocarro}")
+    public String getCarro(@PathParam("codigocarro") String carro) throws Exception {
+        LocacaoModel c = new LocacaoModel();
+        c.setCodigocarro(carro);
 
         //LocacaoDao dao = new LocacaoDao();
         LocacaoDao dao = LocacaoDao.getInstance();
-        l = dao.buscar(l);
+        c = dao.buscarCarro(c);
 
         //Converter para Gson
         Gson g = new Gson();
-        return g.toJson(l);
+        return g.toJson(c);
     }
     
-    
-    @POST
-    @Consumes({"application/json"})
-    @Path("LocacaoCadastrarEmprestimo/inserir")
-    public boolean inserir(String content) throws Exception {
-        Gson g = new Gson();
-        LocacaoModel l = (LocacaoModel) g.fromJson(content, LocacaoModel.class);
+    //get cliente
+    @GET
+    @Produces("application/json")
+    @Path("LocacaoCliente/get/{codigocliente}")
+    public String getCliente(@PathParam("codigocliente") String codigocliente) throws Exception {
+        LocacaoModel c = new LocacaoModel();
+        c.setCodigocliente(codigocliente);
+
         //LocacaoDao dao = new LocacaoDao();
         LocacaoDao dao = LocacaoDao.getInstance();
-        return dao.inserirLocacao(l);
+        c = dao.buscarCliente(c);
+
+        //Converter para Gson
+        Gson g = new Gson();
+        return g.toJson(c);
     }
     
     
+    //get data
+    @GET
+    @Produces("application/json")
+    @Path("LocacaoData/get/{data_locacao}")
+    public String getData(@PathParam("data_locacao") String data) throws Exception {
+        LocacaoModel c = new LocacaoModel();
+        c.setData_locacao(data);
+
+        //LocacaoDao dao = new LocacaoDao();
+        LocacaoDao dao = LocacaoDao.getInstance();
+        c = dao.buscarData(c);
+
+        //Converter para Gson
+        Gson g = new Gson();
+        return g.toJson(c);
+    }
+    
+    
+    
+    //http://localhost:8080/Trabalho/webresources/Locacao/Locacao/inserir
+    @POST
+    @Consumes({"application/json"})
+    @Path("Locacao/inserir")
+    public boolean inserir(String content) throws Exception {
+        Gson g = new Gson();
+        LocacaoModel c = (LocacaoModel) g.fromJson(content, LocacaoModel.class);
+        //LocacaoDao dao = new LocacaoDao();
+        LocacaoDao dao = LocacaoDao.getInstance();
+        return dao.inserirLocacao(c);
+    }
+
+    /**
+     * PUT method for updating or creating an instance of LocacaoResource
+     * @param content representation for the resource
+     */
     @PUT
     @Consumes("application/json")
     @Path("LocacaoDevolucao/alterar")
@@ -94,25 +134,4 @@ public class LocacaoResource {
         LocacaoDao dao = LocacaoDao.getInstance();
         return dao.atualizar(l);
     }
-    
-    //criar um point para ver se o carro esta disponivel 
-    //colocar nesse point o codigo do carro, o status (pesquisar pelo codigoCarro)
-    @GET
-    @Produces("application/json")
-    @Path("DisponibilidadeCarro/get/{codigocarro}")
-    public String getDisponivel(@PathParam("codigocarro") int codigocarro) throws Exception {
-        LocacaoModel c = new LocacaoModel();
-        c.setCodigocarro(codigocarro);
-
-        //LocacaoDao dao = new LocacaoDao();
-        LocacaoDao dao = LocacaoDao.getInstance();
-        c = dao.buscarDisponibilidade(c);
-
-        //Converter para Gson
-        Gson g = new Gson();
-        return g.toJson(c);
-    }
-    
-    
-    
 }

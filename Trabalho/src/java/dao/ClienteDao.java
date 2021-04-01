@@ -5,10 +5,11 @@
  */
 package dao;
 
-import commad.Command;
-import commad.ControleCliente;
-import commad.InserirCommandCliente;
-import commad.RemoverCommandCliente;
+import command.Command;
+import command.ControleCliente;
+import command.InserirCommandCliente;
+import command.RemoverCommandCliente;
+import controller.Conexao;
 import controller.ConexaoUtil;
 import model.ClienteModel;
 import java.sql.*;
@@ -32,16 +33,17 @@ public class ClienteDao {
     private ClienteDao(){
         
     }
+    
     private static ClienteDao instance;
     
-    //aplicacao do padrao singleton 
+    //aplicação padrao singleton
     public synchronized static ClienteDao getInstance(){
         if(instance == null){
             instance = new ClienteDao();
             
         }
         return instance;
-    } 
+    }
 
     public List<ClienteModel> getClientes() {
         List<ClienteModel> listaClientes = new ArrayList<ClienteModel>();
@@ -103,16 +105,14 @@ public class ClienteDao {
         //teste aplicacao observer
         SujeitoAtualizar sujeito = new SujeitoAtualizar();
         
-        
-         //teste aplicacao command
+        //teste aplicacao command
         ClienteModel cliente = new ClienteModel();
         Command inserirCommand = new InserirCommandCliente(cliente);
         Command removerCommad = new RemoverCommandCliente(cliente);
         ControleCliente controle = new ControleCliente(inserirCommand, removerCommad);
         
-        
-        //observer
         new DadosObserver(sujeito);
+        
         try {
             sql = "insert into cliente(codigoCliente, cpf, nome, cnh, fone, email) values (?,?,?,?,?,?)";
             con = ConexaoUtil.getInstance().getConnection();
@@ -130,7 +130,7 @@ public class ClienteDao {
             System.out.println("Notificacao ao adicionar abservadores");
             sujeito.setNotificacao();
             return true;
-
+           
         } catch (ClassNotFoundException | SQLException ex) {
             return false;
         }
@@ -142,7 +142,7 @@ public class ClienteDao {
          ClienteModel cliente = new ClienteModel();
          Command inserirCommand = new InserirCommandCliente(cliente);
          Command removerCommad = new RemoverCommandCliente(cliente);
-         ControleCliente controle = new ControleCliente(inserirCommand, removerCommad); 
+         ControleCliente controle = new ControleCliente(inserirCommand, removerCommad);
          
         try {
             Connection connection = ConexaoUtil.getInstance().getConnection();

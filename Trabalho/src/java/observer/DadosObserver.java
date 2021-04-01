@@ -7,7 +7,7 @@ package observer;
 
 /**
  *
- * @author Robson de Jesus
+ * @author admin
  */
 public class DadosObserver extends Observer{
     

@@ -17,9 +17,8 @@ public class CarroModel {
     private String placa;
     private String marca;
     private String modelo;
-    private Date anoFabricacao;
-    private int valor_km;
-    
+    private String anoFabricacao;
+    private String valor_km;
     
     //teste aplicacao command 
     public final static int INSERIR = 0;
@@ -42,24 +41,6 @@ public class CarroModel {
         }else{
             return "Carro removido...";
         }
-    }
-
-
-    public CarroModel(int codigoCarro, String placa, String marca, String modelo, Date anoFabricacao, int valor_km) {
-        this.codigoCarro = codigoCarro;
-        this.placa = placa;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.anoFabricacao = anoFabricacao;
-        this.valor_km = valor_km;
-    }
-
-    public CarroModel() {
-    }
-
-    @Override
-    public String toString() {
-        return "CarroModel{" + "codigoCarro=" + codigoCarro + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", anoFabricacao=" + anoFabricacao + ", valor_km=" + valor_km + '}';
     }
 
     public int getCodigoCarro() {
@@ -94,23 +75,39 @@ public class CarroModel {
         this.modelo = modelo;
     }
 
-    public Date getAnoFabricacao() {
+    public String getAnoFabricacao() {
         return anoFabricacao;
     }
 
-    public void setAnoFabricacao(Date anoFabricacao) {
+    public void setAnoFabricacao(String anoFabricacao) {
         this.anoFabricacao = anoFabricacao;
     }
 
-    public int getValor_km() {
+    public String getValor_km() {
         return valor_km;
     }
 
-    public void setValor_km(int valor_km) {
+    public void setValor_km(String valor_km) {
         this.valor_km = valor_km;
     }
-    
-    
+
+    public CarroModel(int codigoCarro, String placa, String marca, String modelo, String anoFabricacao, String valor_km) {
+        this.codigoCarro = codigoCarro;
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anoFabricacao = anoFabricacao;
+        this.valor_km = valor_km;
+    }
+
+    public CarroModel() {
+    }
+
+    @Override
+    public String toString() {
+        return "CarroModel{" + "codigoCarro=" + codigoCarro + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", anoFabricacao=" + anoFabricacao + ", valor_km=" + valor_km + '}';
+    }
+
     public int getEstado() {
         return estado;
     }
@@ -119,9 +116,6 @@ public class CarroModel {
         this.estado = estado;
     }
 
-   
-   
-   
     
     
 }
